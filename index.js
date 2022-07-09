@@ -1,4 +1,5 @@
 const express = require('express');
+const jwt = require('jsonwebtoken')
 const app = express();
 const port = 8000;
 
@@ -8,6 +9,19 @@ app.get('/', (req, res) => {
     // res.send('<h1>Welcome to NODE JS!!!</h1>')
 })
 
+// jwt token creation
+app.post('/tokenGeneration', (req, res) => {
+    const user = {
+        id: 1,
+        username: 'novbatch',
+        email: 'nov@gmail.com'
+    }
+    jwt.sign(user, 'secretkey', function(err, token) {
+        res.json({
+            token
+        });
+      });
+})
 
 app.listen(port, function(err){
     if(err){
