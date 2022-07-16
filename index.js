@@ -16,7 +16,7 @@ app.post('/tokenGeneration', (req, res) => {
         username: 'novbatch',
         email: 'nov@gmail.com'
     }
-    jwt.sign(user, 'secretkey', function(err, token) {
+    jwt.sign(user, 'secretkey', {expiresIn: '60s'}, function(err, token) {
         res.json({
             token
         });
